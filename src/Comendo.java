@@ -1,17 +1,26 @@
-public class Comendo extends EstadosAbstract {
+public class Comendo extends Estado {
 
-    public Comendo(Juca juca) {
-        super(juca);
-    }
-    
-    public void update() {
-         System.out.println("Juca está comendo...");
-            juca.hungry -= 5;
-            atual = comer;
+    public Comendo() {
+
     }
 
-    
-    public String getNomeDoEstado() {
-        return "Comendo";
+    public void enter(Juca juca) {
+        System.out.println("Bateu uma fome...");
     }
+
+    public void update(Juca juca) {
+
+        juca.setHungry(juca.getHungry() - 5);
+        System.out.println("Comendo...");
+        juca.mostrarStatus();
+
+
+        if (juca.getHungry() <= 0) {
+            juca.setHungry(0);
+            System.out.println("Ufa! Já estou cheio...");
+            juca.setEstadoAtual(new Trabalhando());
+        }
+
+    }
+
 }

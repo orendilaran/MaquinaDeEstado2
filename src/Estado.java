@@ -1,10 +1,5 @@
-public interface Estado {
+public abstract class Estado {
 
-    void trabalhando (Main main, Jucax juca);
-
-	void comendo (Main main, Jucax juca);
-
-	void dormindo (Main main, Jucax juca);
-
-	String getStatus();
+    void enter(Juca juca) {}
+    void update(Juca juca) {}
 }

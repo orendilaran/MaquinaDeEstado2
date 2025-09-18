@@ -1,39 +1,24 @@
-public class Trabalhando extends EstadosAbstract {
+public class Trabalhando extends Estado {
 
 
-
-    public Trabalhando(Jucax juca) {
-        super();
-        this.juca = juca;
-    }
-
-
-    public String getNomeDoEstado() {
-        return "Trabalhando";
-    }
-
-    @Override
-    public void dormindo(Main main, Jucax jucaa) {
-       
-    }
-
-    @Override
-    public String getStatus() {
-        // Return a status string
-        return "Juca está trabalhando.";
-    }
-
-    @Override
-    public void trabalhando(Main main, Jucax juca) {
-         juca.hungry += 2;
-        juca.fatigue += 5;
-        System.out.println("Juca está trabalhando");
+    public Trabalhando() {
 
     }
 
-    @Override
-    public void comendo(Main main, Jucax juca) {
+    public void enter(Juca juca) {
+        System.out.println("Juca começou a trabalhar");
+    }
 
-        
+    public void update(Juca juca) {
+
+        juca.setHungry(juca.getHungry() + 2);
+        juca.setFatigue(juca.getFatigue() + 5);
+        juca.mostrarStatus();
+
+        if (juca.getFatigue() > 50) {
+            juca.setEstadoAtual(new Dormindo());
+        } else if (juca.getHungry() > 10) {
+            juca.setEstadoAtual(new Comendo());
+        }
     }
 }
